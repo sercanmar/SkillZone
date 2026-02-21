@@ -2,12 +2,12 @@ package com.example.skillzone
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import com.example.skillzone.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -16,48 +16,67 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // abre el menu lateral al tocar el icono de arriba
-        binding.btnMenu.setOnClickListener {
-            binding.drawerLayout.openDrawer(GravityCompat.START)
-        }
+        // 1. ESCUCHAMOS LAS TARJETAS Y BOTONES DE ARRIBA
+        binding.btnMenu.setOnClickListener(this)
+        binding.btnPerfil.setOnClickListener(this)
+        binding.cardTorneos.setOnClickListener(this)
+        binding.cardSalas.setOnClickListener(this)
 
-        // clics de las fotos grandes
-        binding.cardTorneos.setOnClickListener {
-            Toast.makeText(this, "torneos pronto", Toast.LENGTH_SHORT).show()
-        }
-
-        binding.cardSalas.setOnClickListener {
-            Toast.makeText(this, "cargando salas...", Toast.LENGTH_SHORT).show()
-            // aqui pondremos el intent para ir a la pantalla de salas
-        }
-
-        // logica de los botones de abajo
+        // 2. LÓGICA DEL MENÚ DE ABAJO (EL NAV)
         binding.bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.nav_home -> true
+                R.id.nav_home -> true // Ya estamos en inicio
+
                 R.id.nav_salas -> {
-                    Toast.makeText(this, "vas a salas", Toast.LENGTH_SHORT).show()
+                    // Viaje a las salas desde el nav
+                    startActivity(Intent(this@MainActivity, SalasActivity::class.java))
                     true
                 }
-                R.id.nav_perfil -> {
-                    Toast.makeText(this, "vas al perfil", Toast.LENGTH_SHORT).show()
+
+                R.id.nav_torneos -> {
+                    // Viaje a los torneos desde el nav
+                    startActivity(Intent(this@MainActivity, TorneosActivity::class.java))
                     true
                 }
                 else -> false
             }
         }
 
-        // logica del menu lateral
+        // 3. LÓGICA DEL MENÚ LATERAL (AJUSTES Y SALIR)
         binding.navView.setNavigationItemSelectedListener { item ->
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
+
             when (item.itemId) {
+                R.id.menu_ajustes -> {
+                    startActivity(Intent(this@MainActivity, AjustesActivity::class.java))
+                }
                 R.id.menu_salir -> {
-                    // vuelve al login al salir
-                    startActivity(Intent(this, LoginActivity::class.java))
-                    finish()
+                    startActivity(Intent(this@MainActivity, LoginActivity::class.java))
+                    finish() // Cerramos la app al salir
                 }
             }
-            binding.drawerLayout.closeDrawer(GravityCompat.START)
             true
+        }
+    }
+
+    // 4. LÓGICA DE LAS TARJETAS GIGANTES
+    override fun onClick(v: View) {
+        when (v.id) {
+            R.id.btnMenu -> {
+                // Abre el menú lateral
+                binding.drawerLayout.openDrawer(GravityCompat.START)
+            }
+            R.id.btnPerfil -> {
+               startActivity(Intent(this, PerfilActivity::class.java))
+            }
+            R.id.cardTorneos -> {
+                // Viaja a torneos al tocar la foto
+                startActivity(Intent(this, TorneosActivity::class.java))
+            }
+            R.id.cardSalas -> {
+                // Viaja a salas al tocar la foto
+                startActivity(Intent(this, SalasActivity::class.java))
+            }
         }
     }
 }

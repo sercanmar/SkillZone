@@ -3,19 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0F0F13">
-
-    <ImageButton
-        android:id="@+id/btnBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:src="@android:drawable/ic_media_previous"
-        app:tint="#FFFFFF"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:background="#0F0F13"
+    android:fitsSystemWindows="true"> <ImageButton
+    android:id="@+id/btnBack"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:layout_marginStart="20dp"
+    android:background="?attr/selectableItemBackgroundBorderless"
+    android:src="@android:drawable/ic_media_previous"
+    app:tint="#FFFFFF"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/headerContainer"
@@ -136,6 +135,18 @@
                     android:textColor="#FF0000"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"/>
+
+                <Button
+                    android:id="@+id/btnYaTengoCuenta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="#00000000"
+                    android:text="Ya tengo cuenta, iniciar sesión"
+                    android:textAllCaps="false"
+                    android:textColor="#8B5CF6"
+                    android:layout_gravity="center" />
+
             </LinearLayout>
         </ScrollView>
     </androidx.cardview.widget.CardView>

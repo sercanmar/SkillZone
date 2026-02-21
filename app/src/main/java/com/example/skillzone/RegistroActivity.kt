@@ -16,16 +16,20 @@ class RegistroActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(binding.root)
 
         binding.btnGuardarRegistro.setOnClickListener(this)
-        binding.btnBack.setOnClickListener(this) // Listener para el botón atrás
+        binding.btnBack.setOnClickListener(this)
+
+
+        binding.btnYaTengoCuenta.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
         when (v.id) {
-            R.id.btnBack -> {
-                finish() // Vuelve a la pantalla anterior (Login)
+
+            R.id.btnBack, R.id.btnYaTengoCuenta -> {
+                finish()
             }
+
             R.id.btnGuardarRegistro -> {
-                // Lógica de registro (igual que antes)
                 val email = binding.etRegEmail.text.toString()
                 val pass = binding.etRegPassword.text.toString()
                 val repitePass = binding.etRegRepeatPassword.text.toString()

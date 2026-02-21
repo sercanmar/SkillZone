@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Skiil Zone</string>
+    <string name="torneos">Torneos</string>
+    <string name="salas">Salas</string>
 </resources>

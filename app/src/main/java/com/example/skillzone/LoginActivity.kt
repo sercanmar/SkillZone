@@ -26,7 +26,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 startActivity(Intent(this, RegistroActivity::class.java))
             }
             R.id.btnEntrar -> {
-                // Lógica de login con SharedPreferences (igual que antes)
                 val emailEscrito = binding.etEmail.text.toString()
                 val passEscrito = binding.etPassword.text.toString()
                 val preferencias = getSharedPreferences("mis_datos", Context.MODE_PRIVATE)
